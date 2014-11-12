@@ -17,7 +17,7 @@ sfc = (ffc + 1) * 0.5 ;
 //allpass = (_,_ <: (*(sfc),_ : + : @(1)), -) ~_ : (!,_); // allpass ok
 shelfu = _ : ((- : @(1) <: _ , _ : *(ffc) ,  _ ) ~ _ *(ffc) ) :> + ;
 
-allpu = _ : (- : *(sfc) <: (+ )~_)~_ (+(1): @(1)) : _;
+allpu = _ : (- : *(sfc) <: + )~_ (+(1): @(1)) : _;
 
 //replace code after "alpu : " when fixed
 shelfd =  allpu : (- : *(sfc) <: (+ )~_)~_ (+(1): @(1)) : _  ;
