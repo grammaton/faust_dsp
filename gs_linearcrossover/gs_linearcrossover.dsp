@@ -1,15 +1,15 @@
 //Crossover shelf filter with equal phase
 
 //for PI and SR and other math things
-import("math.lib"); 
+import("math.lib");
 
 F = hslider("Freq", 160, 80, 400, 1);
 
 //radians per sample
-srad = (F * 2 * PI ) / SR ; 
+srad = (F * 2 * PI ) / SR ;
 
 //first filter coefficient
-ffc = (sin(srad) - 1) / cos(srad) ; 
+ffc = (sin(srad) - 1) / cos(srad) ;
 
 //second filter coefficient
 sfc = (ffc + 1) * 0.5 ;

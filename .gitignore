@@ -1,6 +1,8 @@
 
 *.DS_Store
 *.tmp.cpp
+*.app
+builds/
 
 ## Core latex/pdflatex auxiliary files:
 *.aux
