@@ -12,11 +12,15 @@ declare description "Gerzon's A-Format to B-Format matrix";
 
 import("filters.lib");
 
+vmeter(x)		= attach(x, envelop(x) : vbargraph("[unit:dB]", -70, 10));
+hmeter(x)		= attach(x, envelop(x) : hbargraph("[unit:dB]", -70, 10));
+
 process(LFU, RFD, RBU, LBD) =
-	((0.5 * (LFU + RFD + RBU + LBD)): highshelf(1,4,2500)),
-	((0.5 * (LFU + RFD - RBU - LBD)): highshelf(1,4,2500)),
-	((0.5 * (LFU - RFD - RBU + LBD)): highshelf(1,4,2500)),
-	((0.5 * (LFU - RFD + RBU - LBD)): highshelf(1,4,2500));
+	hgroup("B-Format",
+	hgroup("W", ((0.5 * (LFU + RFD + RBU + LBD)): highshelf(1,4,2500): vmeter)),
+	hgroup("X", ((0.5 * (LFU + RFD - RBU - LBD)): highshelf(1,4,2500): vmeter)),
+	hgroup("Y", ((0.5 * (LFU - RFD - RBU + LBD)): highshelf(1,4,2500): vmeter)),
+	hgroup("Z", ((0.5 * (LFU - RFD + RBU - LBD)): highshelf(1,4,2500): vmeter)));
 
 	//-------------`(fi.)high_shelf`--------------
 	// First-order "high shelf" filter (gain boost|cut above some frequency).
